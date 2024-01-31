@@ -92,25 +92,35 @@ Sessions are managed using the `HttpSession` class to store user information. Us
 
    a. **Standalone.xml:**
    
-      Add the following code inside the `<datasource>` section:
-
       ```xml
-      <!-- Add your datasource configuration here -->
+       <datasource jndi-name="java:/dsCo2Emission" pool-name="co2Emissions">
+                    <connection-url>jdbc:mysql://localhost:3306/co2Emissions</connection-url>
+                    <driver-class>com.mysql.cj.jdbc.Driver</driver-class>
+                    <driver>mysql</driver>
+                    <security>
+                        <user-name>root</user-name>
+                    </security>
+                    <validation>
+                        <valid-connection-checker class-name="org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLValidConnectionChecker"/>
+                        <validate-on-match>true</validate-on-match>
+                        <exception-sorter class-name="org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLExceptionSorter"/>
+                    </validation>
+      </datasource>
       ```
 
    b. **Graphic Interface:**
    
       Refer to [this video tutorial](https://www.youtube.com/watch?v=TRF--1YM-Ew) for datasource configuration.
 
-2. **Add MySQL Driver:**
+3. **Add MySQL Driver:**
    
    Follow [this video tutorial](https://www.youtube.com/watch?v=I8t1TLSeEBw&t=757s&ab_channel=SkillfulTeacher) to add the MySQL driver.
 
-3. **Create EAR Project:**
+4. **Create EAR Project:**
    
    Create an EAR project and add the EJB and WEB projects to it.
 
-4. **Deploy the EAR:**
+5. **Deploy the EAR:**
    
    Deploy the EAR on the configured Wildfly server. Check the console for a success message:
 
@@ -118,7 +128,7 @@ Sessions are managed using the `HttpSession` class to store user information. Us
    14:32:30,746 INFO  [org.jboss.as.server] (ServerService Thread Pool -- 45) WFLYSRV0010: Deployed "Co2_emissions.ear" (runtime-name : "Co2_emissions.ear")
    ```
 
-5. **Access the Website:**
+6. **Access the Website:**
    
    Search for the localhost URL with the configured port, open a web browser, and access the home page.
 
